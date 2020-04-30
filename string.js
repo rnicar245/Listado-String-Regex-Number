@@ -20,6 +20,7 @@
     document.getElementById("matricula").addEventListener("blur", matricula);
     document.getElementById("cp").addEventListener("blur", cp);
     document.getElementById("mac").addEventListener("blur", mac);
+    document.getElementById("ip").addEventListener("blur", ip);
   }
 
   let capitaliza = function(){
@@ -264,7 +265,26 @@
     }
   }
 
-  
+  let ip = function(){
+    let direccion = document.getElementById("ip").value;
+    let resultado = document.getElementById("rIp");
+    let exec = /^[1-9]\d{0,2}(.\d{1,3}){3}$/.exec(direccion);
+    
+    try{
+      if(direccion == ""){
+        throw "No deje el campo de texto vacío.";
+      }
+      if(exec == null){
+        throw "La dirección IP es incorrecta. Ej: 192.168.1.1";
+      }
+
+      resultado.style.color = "black";
+      resultado.innerHTML = "La dirección IP introducida es correcta.";
+    }catch(ex){
+      resultado.style.color = "red";
+      resultado.innerHTML = ex;
+    }
+  }
 
   document.addEventListener("DOMContentLoaded", inicio);
 }
