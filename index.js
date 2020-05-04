@@ -28,7 +28,9 @@
         cadena[i] = cadena[i].split("");
         cadena[i][0] = cadena[i][0].toUpperCase();
         cadena[i] = cadena[i].join("");
+        
       } 
+      
       resultado.style.color = "black";
       resultado.innerHTML = cadena.join(" ");
     }catch(ex){
@@ -45,7 +47,6 @@
         throw "No deje el campo de texto vacío.";
       }
       cadena = cadena.trim().split(" ");
-
       for(i in cadena){
         cadena[i] = cadena[i].split("");
         for(j in cadena[i]){
@@ -55,6 +56,7 @@
             cadena[i][j] = cadena[i][j].toLowerCase();
           }
         }
+        cadena[i] = cadena[i].join("");
       }
 
       resultado.style.color = "black";
@@ -86,7 +88,7 @@
       }
 
       resultado.style.color = "black";
-      resultado.innerHTML = cadena.join(" ");
+      resultado.innerHTML = cadena.join("");
     }catch(ex){
       resultado.style.color = "red";
       resultado.innerHTML = ex;
@@ -101,20 +103,20 @@
         throw "No deje el campo de texto vacío.";
       }
 
-      cadena = cadena.trim().split(" ");
+      cadena = cadena.trim().split("");
 
       for(i in cadena){
-        cadena[i] = cadena[i].split("");
-        cadena[0][0] = cadena[0][0].toUpperCase();
-        if(cadena[i][0] == cadena[i][0].toUpperCase() && i != 0){
-          cadena[i][0] = cadena[i][0].toLowerCase();
-          cadena[i].unshift(" ");
+        cadena[0] = cadena[0].toUpperCase();
+        if(cadena[i] == cadena[i].toUpperCase() && i != 0){
+          cadena[i] = cadena[i].toLowerCase();
+          cadena.splice(i, 0, " ");
         }
-        cadena[i] = cadena[i].join(""); 
       }
 
+      console.log(cadena.join(""));
+
       resultado.style.color = "black";
-      resultado.innerHTML = cadena.join(" ");
+      resultado.innerHTML = cadena.join("");
     }catch(ex){
       resultado.style.color = "red";
       resultado.innerHTML = ex;
@@ -219,7 +221,7 @@
   let cp = function(){
     let codigo = this.value;
     let resultado = this.nextElementSibling;
-    let exec = /^(0[1-9]|[1-4]\d|5[0-2])0\d{2}$/.exec(codigo);
+    let exec = /^(0[1-9]|[1-4]\d|5[0-2])([1-9]\d{2}|\d[1-9]\d|\d{2}[1-9])$/.exec(codigo);
     
     try{
       if(codigo == ""){
@@ -240,7 +242,7 @@
   let mac = function(){
     let codigo = this.value;
     let resultado = this.nextElementSibling;
-    let exec = /^(\d|[a-fA-F]{2}[-:]?){5}(\d|[a-fA-F])$/.exec(codigo);
+    let exec = /^((\d|[a-fA-F]){2}[-:]?){5}(\d|[a-fA-F]){2}$/.exec(codigo);
     
     try{
       if(codigo == ""){
