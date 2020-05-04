@@ -22,17 +22,9 @@
     try{
       if(cadena == ""){
         throw "No deje el campo de texto vacío.";
-      }
-      cadena = cadena.trim().split(" ");
-      for(i in cadena){
-        cadena[i] = cadena[i].split("");
-        cadena[i][0] = cadena[i][0].toUpperCase();
-        cadena[i] = cadena[i].join("");
-        
-      } 
-      
+      }  
       resultado.style.color = "black";
-      resultado.innerHTML = cadena.join(" ");
+      resultado.innerHTML = cadena.trim().replace(/\b\w/g, c => c.toUpperCase());
     }catch(ex){
       resultado.style.color = "red";
       resultado.innerHTML = ex;
@@ -263,7 +255,7 @@
   let ip = function(){
     let direccion = this.value;
     let resultado = this.nextElementSibling;
-    let exec = /^[1-2]\d{0,2}(.\d{1,3}){3}$/.exec(direccion);
+    let exec = /^((25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|[0-9])\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|[0-9])$/.exec(direccion);
     
     try{
       if(direccion == ""){
